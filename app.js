@@ -14,7 +14,13 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  //app.set('view engine', 'jade');
+  app.set('view engine', 'html')
+  app.set('layout', 'layout') // rendering by default
+  //app.set('partials', {head: "head"}) // partails using by default on all pages
+  //app.enable('view cache');
+  app.engine('html', require('hogan-express'));
+  
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
